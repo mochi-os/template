@@ -1,10 +1,7 @@
 import { APP_ROUTES } from '@/config/routes'
 import {
   MessagesSquare,
-  AudioWaveform,
   Bell,
-  Command,
-  GalleryVerticalEnd,
   Home,
   UserPlus,
   LayoutTemplate,
@@ -12,28 +9,6 @@ import {
 import { type SidebarData } from '../types'
 
 export const sidebarData: SidebarData = {
-  user: {
-    name: 'Template User',
-    email: 'you@example.com',
-    avatar: '/avatars/shadcn.jpg',
-  },
-  teams: [
-    {
-      name: 'Workspace',
-      logo: Command,
-      plan: 'Starter',
-    },
-    {
-      name: 'Team One',
-      logo: GalleryVerticalEnd,
-      plan: 'Enterprise',
-    },
-    {
-      name: 'Team Two',
-      logo: AudioWaveform,
-      plan: 'Startup',
-    },
-  ],
   navGroups: [
     {
       title: 'Apps',
