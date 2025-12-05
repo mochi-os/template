@@ -1,25 +1,19 @@
 {
 	"version": "1.0",
 	"label": "app_name",
-	"paths": [
-		"template"
-	],
-	"architecture": {
-		"engine": "starlark",
-		"version": 2
+	"paths": [ "template" ],
+	"architecture": { "engine": "starlark", "version": 2 },
+	"execute": [ "template.star" ],
+
+	"database": {
+		"schema": 1,
+		"file": "template.db",
+		"create": {"function": "database_create"}
 	},
-	"execute": [
-		"template.star"
-	],
+
 	"actions": {
-		"": {
-			"file": "web/dist/index.html"
-		},
-		"assets": {
-			"files": "web/dist/assets"
-		},
-		"images": {
-			"files": "web/dist/images"
-		}
+		"": { "function": "action_list" },
+		"assets": { "files": "web/dist/assets" },
+		"images": { "files": "web/dist/images" }
 	}
 }
