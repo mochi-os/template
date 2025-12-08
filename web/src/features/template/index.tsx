@@ -1,5 +1,12 @@
 import * as React from 'react'
-import { MoreHorizontal } from 'lucide-react'
+import {
+  ArrowUpRight,
+  Blocks,
+  BookOpenText,
+  MoreHorizontal,
+  RotateCcw,
+  Save,
+} from 'lucide-react'
 import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { Search } from '@/components/search'
@@ -101,9 +108,13 @@ export function Template() {
         <Search />
         <div className='ms-auto flex items-center gap-2'>
           <Button variant='outline' size='sm'>
+            <BookOpenText className='mr-2 h-4 w-4' />
             Readme
           </Button>
-          <Button size='sm'>New block</Button>
+          <Button size='sm'>
+            <Blocks className='mr-2 h-4 w-4' />
+            New block
+          </Button>
         </div>
       </Header>
 
@@ -162,8 +173,12 @@ export function Template() {
                     <Switch id='notify' />
                   </div>
                   <div className='flex flex-wrap gap-2'>
-                    <Button size='sm'>Save</Button>
+                    <Button size='sm'>
+                      <Save className='mr-1.5 h-4 w-4' />
+                      Save
+                    </Button>
                     <Button size='sm' variant='outline'>
+                      <RotateCcw className='mr-1.5 h-4 w-4' />
                       Reset
                     </Button>
                   </div>
@@ -190,6 +205,7 @@ export function Template() {
                         <p className='text-sm text-foreground'>{detail.value}</p>
                         {detail.action ? (
                           <Button variant='link' size='sm' className='px-0 text-primary'>
+                            <ArrowUpRight className='mr-1 h-3 w-3' />
                             {detail.action}
                           </Button>
                         ) : null}
