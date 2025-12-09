@@ -14,6 +14,10 @@
 		"create": {"function": "database_create"}
 	},
 
+	"icons": [
+		{"action": "", "label": "app_name", "file": "images/icon.svg"}
+	],
+
 	"actions": {
 		"": { "function": "action_list" },
 		"assets": { "files": "web/dist/assets" },
