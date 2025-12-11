@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
-import { CircleUser, LogOut, Settings, Search } from 'lucide-react'
-import { toast } from 'sonner'
+import { CircleUser, LogOut } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useAuthStore } from '@/stores/auth-store'
 import { readProfileCookie } from '@/lib/profile-cookie'
+import { useTheme } from '@/context/theme-provider'
 import useDialogState from '@/hooks/use-dialog-state'
 import { Button } from '@/components/ui/button'
 import { NotificationsDropdown } from '@/components/notifications-dropdown'
-import { useSearch } from '@/context/search-provider'
+import { AppsDropdown } from '@/components/apps-dropdown'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,27 +15,18 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from '@/components/ui/alert-dialog'
-import { removeCookie } from '@/lib/cookies'
+import { SignOutDialog } from '@/components/sign-out-dialog'
+import { DropdownMenuSeparator } from '@radix-ui/react-dropdown-menu'
 
 export function TopBar() {
   const [offset, setOffset] = useState(0)
   const [open, setOpen] = useDialogState()
-  const [isLoggingOut, setIsLoggingOut] = useState(false)
-  const { setOpen: setSearchOpen } = useSearch()
+  const { theme } = useTheme()
 
+  const email = useAuthStore((state) => state.email)
   const profile = readProfileCookie()
   const displayName = profile.name || 'User'
-  const displayEmail = profile.email || 'user@example.com'
+  const displayEmail = email || 'user@example.com'
 
   useEffect(() => {
     const onScroll = () => {
@@ -44,23 +36,11 @@ export function TopBar() {
     return () => document.removeEventListener('scroll', onScroll)
   }, [])
 
-  const handleSignOut = async () => {
-    setIsLoggingOut(true)
-    try {
-      removeCookie('token')
-      removeCookie('mochi_me')
-      toast.success('Logged out successfully')
-      window.location.href = import.meta.env.VITE_AUTH_LOGIN_URL
-    } catch {
-      removeCookie('token')
-      removeCookie('mochi_me')
-      toast.error('Logged out (with errors)')
-      window.location.href = import.meta.env.VITE_AUTH_LOGIN_URL
-    } finally {
-      setIsLoggingOut(false)
-      setOpen(false)
-    }
-  }
+  useEffect(() => {
+    const themeColor = theme === 'dark' ? '#020817' : '#fff'
+    const metaThemeColor = document.querySelector("meta[name='theme-color']")
+    if (metaThemeColor) metaThemeColor.setAttribute('content', themeColor)
+  }, [theme])
 
   return (
     <>
@@ -78,76 +58,58 @@ export function TopBar() {
           )}
         >
           {/* Logo */}
-          <a href="/" className="flex items-center">
+          <a href="/" className="flex shrink-0 items-center">
             <img
-              src="/images/logo-header.svg"
+              src="./images/logo-header.svg"
               alt="Mochi"
               className="h-8 w-8"
             />
           </a>
 
-          {/* Title */}
-          <h1 className="absolute left-1/2 -translate-x-1/2 text-xl font-light tracking-tight" style={{ fontFamily: 'Nunito, sans-serif' }}>Template</h1>
+          {/* Page Title */}
+          <h1 className="absolute left-1/2 -translate-x-1/2 text-xl font-light tracking-tight"  >Template</h1>
 
           <div className="flex-1" />
 
-          {/* Search */}
-          <Button variant="ghost" size="icon" onClick={() => setSearchOpen(true)}>
-            <Search className="size-5" />
-          </Button>
+          {/* Right Side Icons */}
+          <div className="flex shrink-0 items-center gap-1">
 
-          {/* Notifications */}
-          <NotificationsDropdown />
+            {/* Notifications */}
+            <NotificationsDropdown />
 
-          {/* User Menu */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <CircleUser className="size-5" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="min-w-56" align="end">
-              <DropdownMenuLabel className="p-0 font-normal">
-                <div className="grid px-2 py-1.5 text-start text-sm leading-tight">
-                  <span className="font-semibold">{displayName}</span>
-                  <span className="text-xs text-muted-foreground">
-                    {displayEmail}
-                  </span>
-                </div>
-              </DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() => {
-                  window.location.href = '/settings/'
-                }}
-              >
-                <Settings className="size-4" />
-                Settings
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setOpen(true)}>
-                <LogOut className="size-4" />
-                Log out
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+            {/* Apps Dropdown */}
+            <AppsDropdown />
+            {/* User Menu */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <CircleUser className="size-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="min-w-56" align="end">
+                <DropdownMenuLabel className="p-0 font-normal">
+                  <div className="grid px-2 py-1.5 text-start text-sm leading-tight">
+                    <span className="font-semibold">{displayName}</span>
+                    <span className="text-xs text-muted-foreground">
+                      {displayEmail}
+                    </span>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator className="my-1 h-px bg-muted" />
+                <DropdownMenuItem
+                  onClick={() => setOpen(true)}
+                  className="bg-red-50 text-red-600 focus:bg-red-100 focus:text-red-600"
+                >
+                  <LogOut className="mr-2 size-4 text-red-600" />
+                  Log out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
       </header>
 
-      <AlertDialog open={!!open} onOpenChange={setOpen}>
-        <AlertDialogContent className="sm:max-w-sm">
-          <AlertDialogHeader>
-            <AlertDialogTitle>Log out</AlertDialogTitle>
-            <AlertDialogDescription>
-              Are you sure you want to log out? You will need to log in again to access your account.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel disabled={isLoggingOut}>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={handleSignOut} disabled={isLoggingOut}>
-              {isLoggingOut ? 'Logging out...' : 'Log out'}
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <SignOutDialog open={!!open} onOpenChange={setOpen} />
     </>
   )
 }
