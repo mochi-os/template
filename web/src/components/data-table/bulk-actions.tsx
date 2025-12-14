@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { type Table } from '@tanstack/react-table'
 import { X } from 'lucide-react'
-import { cn } from '@mochi/common/lib/utils'
+import { cn } from '@mochi/common'
 import { Badge } from '@mochi/common/components/ui/badge'
 import { Button } from '@mochi/common/components/ui/button'
 import { Separator } from '@mochi/common/components/ui/separator'

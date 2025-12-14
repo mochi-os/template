@@ -1,12 +1,12 @@
 import { Link } from '@tanstack/react-router'
 import { Menu, X } from 'lucide-react'
-import { cn } from '@mochi/common/lib/utils'
+import { cn } from '@mochi/common'
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from '@mochi/common/components/ui/sidebar'
+} from '@mochi/common'
 import { Button } from '@mochi/common/components/ui/button'
 
 export function AppTitle() {

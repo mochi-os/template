@@ -14,7 +14,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from '@mochi/common/components/ui/sidebar'
+} from '@mochi/common'
 
 type TeamSwitcherProps = {
   teams: {

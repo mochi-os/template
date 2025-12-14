@@ -5,7 +5,7 @@ import {
   DoubleArrowRightIcon,
 } from '@radix-ui/react-icons'
 import { type Table } from '@tanstack/react-table'
-import { cn, getPageNumbers } from '@mochi/common/lib/utils'
+import { cn, getPageNumbers } from '@mochi/common'
 import { Button } from '@mochi/common/components/ui/button'
 import {
   Select,

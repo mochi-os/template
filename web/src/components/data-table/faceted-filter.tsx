@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { CheckIcon, PlusCircledIcon } from '@radix-ui/react-icons'
 import { type Column } from '@tanstack/react-table'
-import { cn } from '@mochi/common/lib/utils'
+import { cn } from '@mochi/common'
 import { Badge } from '@mochi/common/components/ui/badge'
 import { Button } from '@mochi/common/components/ui/button'
 import {

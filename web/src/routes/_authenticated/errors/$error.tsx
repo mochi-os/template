@@ -1,14 +1,14 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { ConfigDrawer } from '@mochi/common/components/config-drawer'
-import { Header } from '@mochi/common/components/layout/header'
-import { ProfileDropdown } from '@mochi/common/components/profile-dropdown'
+import { ConfigDrawer } from '@mochi/common'
+import { Header } from '@mochi/common'
+import { ProfileDropdown } from '@mochi/common'
 import { Search } from '@mochi/common/components/search'
 import { ThemeSwitch } from '@mochi/common/components/theme-switch'
-import { ForbiddenError } from '@mochi/common/features/errors/forbidden'
-import { GeneralError } from '@mochi/common/features/errors/general-error'
-import { MaintenanceError } from '@mochi/common/features/errors/maintenance-error'
-import { NotFoundError } from '@mochi/common/features/errors/not-found-error'
-import { UnauthorisedError } from '@mochi/common/features/errors/unauthorized-error'
+import { ForbiddenError } from '@mochi/common'
+import { GeneralError } from '@mochi/common'
+import { MaintenanceError } from '@mochi/common'
+import { NotFoundError } from '@mochi/common'
+import { UnauthorisedError } from '@mochi/common'
 
 export const Route = createFileRoute('/_authenticated/errors/$error')({
   component: RouteComponent,

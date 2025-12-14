@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { cn } from '@mochi/common/lib/utils'
+import { cn } from '@mochi/common'
 import {
   Popover,
   PopoverContent,

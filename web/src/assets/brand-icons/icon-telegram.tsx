@@ -1,5 +1,5 @@
 import { type SVGProps } from 'react'
-import { cn } from '@mochi/common/lib/utils'
+import { cn } from '@mochi/common'
 
 export function IconTelegram({ className, ...props }: SVGProps<SVGSVGElement>) {
   return (

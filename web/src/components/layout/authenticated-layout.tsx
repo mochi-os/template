@@ -1,10 +1,10 @@
 import { Outlet } from '@tanstack/react-router'
-import { getCookie } from '@mochi/common/lib/cookies'
-import { cn } from '@mochi/common/lib/utils'
-import { LayoutProvider } from '@mochi/common/context/layout-provider'
-import { SearchProvider } from '@mochi/common/context/search-provider'
-import { SidebarInset, SidebarProvider } from '@mochi/common/components/ui/sidebar'
-import { TopBar } from '@mochi/common/components/layout/top-bar'
+import { getCookie } from '@mochi/common'
+import { cn } from '@mochi/common'
+import { LayoutProvider } from '@mochi/common'
+import { SearchProvider } from '@mochi/common'
+import { SidebarInset, SidebarProvider } from '@mochi/common'
+import { TopBar } from '@mochi/common'
 import { AppSidebar } from './app-sidebar'
 
 type AuthenticatedLayoutProps = {

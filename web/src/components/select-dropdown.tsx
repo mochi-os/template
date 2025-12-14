@@ -1,5 +1,5 @@
 import { Loader } from 'lucide-react'
-import { cn } from '@mochi/common/lib/utils'
+import { cn } from '@mochi/common'
 import { FormControl } from '@mochi/common/components/ui/form'
 import {
   Select,

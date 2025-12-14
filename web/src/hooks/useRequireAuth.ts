@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { useAuth } from '@mochi/common/hooks/useAuth'
-import { getCookie } from '@mochi/common/lib/cookies'
+import { useAuth } from '@mochi/common'
+import { getCookie } from '@mochi/common'
 
 export function useRequireAuth() {
   const { isAuthenticated, isInitialized, isLoading } = useAuth()

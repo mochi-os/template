@@ -8,8 +8,8 @@ import {
 } from '@tanstack/react-query'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { toast } from 'sonner'
-import { useAuthStore } from '@mochi/common/stores/auth-store'
-import { ThemeProvider } from '@mochi/common/context/theme-provider'
+import { useAuthStore } from '@mochi/common'
+import { ThemeProvider } from '@mochi/common'
 // import { DirectionProvider } from './context/direction-provider' // Commented for future use (RTL support)
 // import { FontProvider } from './context/font-provider' // Commented for future use (Font switching)
 // Generated Routes

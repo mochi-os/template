@@ -1,10 +1,10 @@
-import { useLayout } from '@mochi/common/context/layout-provider'
+import { useLayout } from '@mochi/common'
 import {
   Sidebar,
   SidebarContent,
   SidebarRail,
-} from '@mochi/common/components/ui/sidebar'
-import { NavGroup } from '@mochi/common/components/layout/nav-group'
+} from '@mochi/common'
+import { NavGroup } from '@mochi/common'
 import { sidebarData } from './data/sidebar-data'
 
 export function AppSidebar() {

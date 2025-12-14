@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { Menu } from 'lucide-react'
-import { cn } from '@mochi/common/lib/utils'
+import { cn } from '@mochi/common'
 import { Button } from '@mochi/common/components/ui/button'
 import {
   DropdownMenu,
