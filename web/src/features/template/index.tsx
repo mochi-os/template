@@ -1,5 +1,4 @@
-import { Header } from '@mochi/common'
-import { Main } from '@mochi/common/components/layout/main'
+import { Header, Main } from '@mochi/common'
 
 export function Template() {
   return (

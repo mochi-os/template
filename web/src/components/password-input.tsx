@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Eye, EyeOff } from 'lucide-react'
 import { cn } from '@mochi/common'
-import { Button } from '@mochi/common/components/ui/button'
+import { Button } from '@mochi/common'
 
 type PasswordInputProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,

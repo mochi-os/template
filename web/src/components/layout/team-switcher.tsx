@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from '@mochi/common/components/ui/dropdown-menu'
+} from '@mochi/common'
 import {
   SidebarMenu,
   SidebarMenuButton,

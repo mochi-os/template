@@ -4,13 +4,13 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@mochi/common/components/ui/popover'
+} from '@mochi/common'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@mochi/common/components/ui/tooltip'
+} from '@mochi/common'
 
 type LongTextProps = {
   children: React.ReactNode

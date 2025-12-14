@@ -6,14 +6,14 @@ import {
 } from '@radix-ui/react-icons'
 import { type Table } from '@tanstack/react-table'
 import { cn, getPageNumbers } from '@mochi/common'
-import { Button } from '@mochi/common/components/ui/button'
+import { Button } from '@mochi/common'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@mochi/common/components/ui/select'
+} from '@mochi/common'
 
 type DataTablePaginationProps<TData> = {
   table: Table<TData>

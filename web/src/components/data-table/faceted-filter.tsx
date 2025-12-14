@@ -2,8 +2,8 @@ import * as React from 'react'
 import { CheckIcon, PlusCircledIcon } from '@radix-ui/react-icons'
 import { type Column } from '@tanstack/react-table'
 import { cn } from '@mochi/common'
-import { Badge } from '@mochi/common/components/ui/badge'
-import { Button } from '@mochi/common/components/ui/button'
+import { Badge } from '@mochi/common'
+import { Button } from '@mochi/common'
 import {
   Command,
   CommandEmpty,
@@ -12,13 +12,13 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from '@mochi/common/components/ui/command'
+} from '@mochi/common'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@mochi/common/components/ui/popover'
-import { Separator } from '@mochi/common/components/ui/separator'
+} from '@mochi/common'
+import { Separator } from '@mochi/common'
 
 type DataTableFacetedFilterProps<TData, TValue> = {
   column?: Column<TData, TValue>

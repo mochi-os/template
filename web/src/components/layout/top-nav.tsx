@@ -1,13 +1,13 @@
 import { Link } from '@tanstack/react-router'
 import { Menu } from 'lucide-react'
 import { cn } from '@mochi/common'
-import { Button } from '@mochi/common/components/ui/button'
+import { Button } from '@mochi/common'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@mochi/common/components/ui/dropdown-menu'
+} from '@mochi/common'
 
 type TopNavProps = React.HTMLAttributes<HTMLElement> & {
   links: {

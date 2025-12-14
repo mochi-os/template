@@ -7,7 +7,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@mochi/common'
-import { Button } from '@mochi/common/components/ui/button'
+import { Button } from '@mochi/common'
 
 export function AppTitle() {
   const { setOpenMobile } = useSidebar()
