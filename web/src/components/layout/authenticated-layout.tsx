@@ -1,11 +1,11 @@
 import { Outlet } from '@tanstack/react-router'
-import { getCookie } from '@/lib/cookies'
-import { cn } from '@/lib/utils'
-import { LayoutProvider } from '@/context/layout-provider'
-import { SearchProvider } from '@/context/search-provider'
-import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
-import { AppSidebar } from '@/components/layout/app-sidebar'
-import { TopBar } from '@/components/layout/top-bar'
+import { getCookie } from '@mochi/common/lib/cookies'
+import { cn } from '@mochi/common/lib/utils'
+import { LayoutProvider } from '@mochi/common/context/layout-provider'
+import { SearchProvider } from '@mochi/common/context/search-provider'
+import { SidebarInset, SidebarProvider } from '@mochi/common/components/ui/sidebar'
+import { TopBar } from '@mochi/common/components/layout/top-bar'
+import { AppSidebar } from './app-sidebar'
 
 type AuthenticatedLayoutProps = {
   children?: React.ReactNode
@@ -18,7 +18,7 @@ export function AuthenticatedLayout({ children }: AuthenticatedLayoutProps) {
     <SearchProvider>
       <LayoutProvider>
         <div className="flex h-svh flex-col">
-          <TopBar />
+          <TopBar title="Template App" />
           <SidebarProvider defaultOpen={defaultOpen} className="flex-1 overflow-hidden">
             <AppSidebar />
             <SidebarInset

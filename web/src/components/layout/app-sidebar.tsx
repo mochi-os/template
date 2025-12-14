@@ -1,11 +1,11 @@
-import { useLayout } from '@/context/layout-provider'
+import { useLayout } from '@mochi/common/context/layout-provider'
 import {
   Sidebar,
   SidebarContent,
   SidebarRail,
-} from '@/components/ui/sidebar'
+} from '@mochi/common/components/ui/sidebar'
+import { NavGroup } from '@mochi/common/components/layout/nav-group'
 import { sidebarData } from './data/sidebar-data'
-import { NavGroup } from './nav-group'
 
 export function AppSidebar() {
   const { collapsible, variant } = useLayout()

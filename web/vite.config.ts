@@ -18,6 +18,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      '@mochi/common': path.resolve(__dirname, '../../../lib/common/src'),
     },
   },
 })
