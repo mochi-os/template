@@ -7,9 +7,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@mochi/common": ["../../../lib/common/src/index.ts"],
-      "@mochi/common/*": ["../../../lib/common/src/*"]
+      "@/*": ["./src/*"]
     }
   }
 }
