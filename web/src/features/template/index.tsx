@@ -1,13 +1,13 @@
-import { Header, Main } from '@mochi/common'
+import { PageHeader, Main } from '@mochi/common'
+import { Sparkles } from 'lucide-react'
 
 export function Template() {
   return (
     <>
-      <Header>
-        <span className='text-muted-foreground'>
-          This is a template for building new apps
-        </span>
-      </Header>
+      <PageHeader 
+        title="Template" 
+        icon={<Sparkles className='size-4 md:size-5' />}
+      />
       <Main />
     </>
   )
