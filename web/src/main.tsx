@@ -18,8 +18,6 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: (failureCount, error) => {
-        if (import.meta.env.DEV) console.log({ failureCount, error })
-
         if (failureCount >= 0 && import.meta.env.DEV) return false
         if (failureCount > 3 && import.meta.env.PROD) return false
 
@@ -50,9 +48,6 @@ const queryClient = new QueryClient({
         if (error.response?.status === 500) {
           toast.error('Internal server error')
           router.navigate({ to: '/500' })
-        }
-        if (error.response?.status === 403) {
-          // router.navigate("/forbidden", { replace: true });
         }
       }
     },

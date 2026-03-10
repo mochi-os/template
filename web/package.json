@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
-    "knip": "knip"
+    "knip": "pnpm -w exec knip"
   },
   "dependencies": {
     "@mochi/common": "workspace:*",
@@ -60,12 +60,6 @@
     "vaul": "^1.1.2",
     "zod": "^4.1.12",
     "zustand": "^5.0.8"
-  },
-  "pnpm": {
-    "overrides": {
-      "@types/react": "^19.2.7",
-      "csstype": "^3.2.3"
-    }
   },
   "devDependencies": {
     "@eslint/js": "^9.37.0",
