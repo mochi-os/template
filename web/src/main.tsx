@@ -1,71 +1,25 @@
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
-import { AxiosError } from 'axios'
-import {
-  QueryCache,
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
+import { QueryClientProvider } from '@tanstack/react-query'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
-import { toast } from 'sonner'
-import { useAuthStore, ThemeProvider } from '@mochi/common'
+import {
+  ThemeProvider,
+  createQueryClient,
+  getRouterBasepath,
+  isInShell,
+  useAuthStore,
+} from '@mochi/common'
 // Generated Routes
 import { routeTree } from './routeTree.gen'
 // Styles
 import './styles/index.css'
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: (failureCount, error) => {
-        if (failureCount >= 0 && import.meta.env.DEV) return false
-        if (failureCount > 3 && import.meta.env.PROD) return false
-
-        return !(
-          error instanceof AxiosError &&
-          [401, 403].includes(error.response?.status ?? 0)
-        )
-      },
-      refetchOnWindowFocus: import.meta.env.PROD,
-      staleTime: 10 * 1000, // 10s
-    },
-    mutations: {
-      onError: (error) => {
-        // Let individual mutation handlers show their own error messages
-
-        if (error instanceof AxiosError) {
-          if (error.response?.status === 304) {
-            toast.error('Content not modified')
-          }
-        }
-      },
-    },
-  },
-  queryCache: new QueryCache({
-    onError: (error) => {
-      if (error instanceof AxiosError) {
-        // 401 is handled centrally in the API client interceptor
-        if (error.response?.status === 500) {
-          toast.error('Internal server error')
-          router.navigate({ to: '/500' })
-        }
-      }
-    },
-  }),
-})
-
-const getBasepath = () => {
-  const pathname = window.location.pathname;
-  // Extract basepath: /chat/ -> /chat/, /chat/some-route -> /chat/
-  // Match pattern: /<app-name>/ (with trailing slash)
-  const match = pathname.match(/^(\/[^/]+)/);
-  return match ? match[1] : '/';
-};
+const queryClient = createQueryClient()
 
 const router = createRouter({
   routeTree,
   context: { queryClient },
-  basepath: getBasepath(),
+  basepath: getRouterBasepath(),
   defaultPreload: 'intent',
   defaultPreloadStaleTime: 0,
 })
@@ -77,8 +31,11 @@ declare module '@tanstack/react-router' {
   }
 }
 
-// Initialize auth state from cookie on app start
-useAuthStore.getState().initialize()
+// Initialize auth state from cookie on app start BEFORE router loads
+// In shell mode, auth is initialized asynchronously via postMessage in _authenticated/route.tsx
+if (!isInShell()) {
+  useAuthStore.getState().initialize()
+}
 
 // Render the app
 const rootElement = document.getElementById('root')!
