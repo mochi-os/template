@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { AuthenticatedLayout, useAuthStore } from '@mochi/common'
+import { AuthenticatedLayout, useAuthStore } from '@mochi/web'
 import { sidebarData } from '@/components/layout/data/sidebar-data'
 
 export const Route = createFileRoute('/_authenticated')({
