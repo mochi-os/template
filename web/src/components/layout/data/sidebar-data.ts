@@ -1,5 +1,5 @@
 import { Settings } from 'lucide-react'
-import { type SidebarData } from '@mochi/common'
+import { type SidebarData } from '@mochi/web'
 
 export const sidebarData: SidebarData = {
   navGroups: [
