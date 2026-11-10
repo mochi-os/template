@@ -1,6 +1,5 @@
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
-import { AxiosError } from 'axios'
 import {
   QueryCache,
   QueryClient,
@@ -8,7 +7,7 @@ import {
 } from '@tanstack/react-query'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { toast } from 'sonner'
-import { useAuthStore, ThemeProvider } from '@mochi/web'
+import { useAuthStore, ThemeProvider, HttpError } from '@mochi/web'
 // Generated Routes
 import { routeTree } from './routeTree.gen'
 // Styles
@@ -24,7 +23,7 @@ const queryClient = new QueryClient({
         if (failureCount > 3 && import.meta.env.PROD) return false
 
         return !(
-          error instanceof AxiosError &&
+          error instanceof HttpError &&
           [401, 403].includes(error.response?.status ?? 0)
         )
       },
@@ -35,7 +34,7 @@ const queryClient = new QueryClient({
       onError: (error) => {
         // Let individual mutation handlers show their own error messages
 
-        if (error instanceof AxiosError) {
+        if (error instanceof HttpError) {
           if (error.response?.status === 304) {
             toast.error('Content not modified')
           }
@@ -45,7 +44,7 @@ const queryClient = new QueryClient({
   },
   queryCache: new QueryCache({
     onError: (error) => {
-      if (error instanceof AxiosError) {
+      if (error instanceof HttpError) {
         // 401 is handled centrally in the API client interceptor
         if (error.response?.status === 500) {
           toast.error('Internal server error')
